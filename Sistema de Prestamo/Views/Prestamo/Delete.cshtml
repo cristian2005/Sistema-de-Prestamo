@@ -1,0 +1,96 @@
+﻿@model Sistema_de_Prestamo.Models.Prestamo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Prestamo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prestadore.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prestadore.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Monto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Monto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoCuotas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoCuotas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MontoCuota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MontoCuota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalIntereses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalIntereses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MontoPagar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MontoPagar)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

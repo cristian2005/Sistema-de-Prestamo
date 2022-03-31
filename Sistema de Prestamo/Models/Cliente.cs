@@ -15,10 +15,12 @@ namespace Sistema_de_Prestamo.Models
         public string Apellido { get; set; }
         [Required]
         public string Cedula { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Direccion { get; set; }
         public string Telefono { get; set; }
         [Required]
         public decimal Salario { get; set; }
 
+        public ICollection<Prestamo> Prestamos { get; set; }
     }
 }

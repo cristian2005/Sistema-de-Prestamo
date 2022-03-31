@@ -10,7 +10,6 @@ namespace Sistema_de_Prestamo.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "Sistema_de_Prestamo.Models.ApplicationDbContext";
         }
 
         protected override void Seed(Sistema_de_Prestamo.Models.ApplicationDbContext context)

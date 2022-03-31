@@ -10,6 +10,8 @@ using Sistema_de_Prestamo.Models;
 
 namespace Sistema_de_Prestamo.Controllers
 {
+    [Authorize]
+
     public class ClientesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

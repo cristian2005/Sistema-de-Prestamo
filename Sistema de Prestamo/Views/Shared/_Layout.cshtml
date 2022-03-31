@@ -23,6 +23,16 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
                     <li>@Html.ActionLink("Prestadores", "Index", "Prestadores")</li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            Prestamos <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Crear", "Create", "Prestamo")</li>
+                            <li>@Html.ActionLink("Cuotas", "Cuotas", "Prestamo")</li>
+
+                        </ul>
+                    </li>
                     @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")

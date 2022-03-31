@@ -1,0 +1,90 @@
+﻿@model Sistema_de_Prestamo.Models.Prestamo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Prestamo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prestadore.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prestadore.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Monto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Monto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoCuotas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoCuotas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MontoCuota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MontoCuota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalIntereses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalIntereses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MontoPagar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MontoPagar)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

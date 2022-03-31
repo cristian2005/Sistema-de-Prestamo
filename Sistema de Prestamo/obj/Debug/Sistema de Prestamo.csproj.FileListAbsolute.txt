@@ -101,12 +101,10 @@ C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\bi
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema de Prestamo.csprojAssemblyReference.cache
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema de Prestamo.csproj.CoreCompileInputs.cache
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema de Prestamo.csproj.CopyComplete
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema de Prestamo.dll
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema de Prestamo.pdb
-C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema_de_Prestamo.Migrations.InitialCreate.resources
+C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema de Prestamo.csprojAssemblyReference.cache
+C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema_de_Prestamo.Migrations.inicial.resources
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema de Prestamo.csproj.GenerateResource.cache
-C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema_de_Prestamo.Migrations.Migracion.resources
-C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema_de_Prestamo.Migrations.Mig.resources
