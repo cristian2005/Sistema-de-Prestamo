@@ -50,14 +50,14 @@ namespace Sistema_de_Prestamo.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Monto,Interes,NoCuotas,FechaInicio,MontoCuota,TotalIntereses,MontoPagar,Cliente_Id,Prestadore_Id")] Prestamo prestamo)
+        
+        public ActionResult Create(Prestamo prestamo)
         {
             if (ModelState.IsValid)
             {
                 db.Prestamo.Add(prestamo);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var result= db.SaveChanges();
+                return Json(new {State=result });
             }
 
             ViewBag.Cliente_Id = new SelectList(db.Clientes, "Id", "Nombre", prestamo.Cliente_Id);

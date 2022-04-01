@@ -7,10 +7,10 @@
 <h2>Crear</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm(null, null, FormMethod.Post,new { id="form-prestamos"}))
 {
-    @Html.AntiForgeryToken()
-    
+  
+
     <div class="form-horizontal">
         <h4>Prestamo</h4>
         <hr />
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Interes, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Interes,"Interes %", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Interes, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Interes, "", new { @class = "text-danger" })
@@ -46,19 +46,49 @@
                 @Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        @{
+            var formaPago = new List<SelectListItem>()
+            {
+            new SelectListItem()
+            {
+            Text="Diario"
+            }, new SelectListItem()
+            {
+              Text=  "Semanal"
+            },
+            new SelectListItem()
+            {
+              Text=  "Quincenal"
+            },
+            new SelectListItem()
+            {
+              Text=  "Mensual"
+            },
+            new SelectListItem()
+            {
+              Text=  "Anual"
+            }
+        };
+        }
+        <div class="form-group">
+            @Html.LabelFor(model => model.FormaPago, "Forma de Pago", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("FormaPago", formaPago, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.FormaPago, "", new { @class = "text-danger" })
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.MontoCuota, "Monto de Cuota", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MontoCuota, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.MontoCuota, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.MontoCuota, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TotalIntereses,"Total Interes", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TotalIntereses, "Total Interes", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TotalIntereses, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.TotalIntereses, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.TotalIntereses, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -66,7 +96,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.MontoPagar, "Monto a  Pagar", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MontoPagar, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.MontoPagar, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.MontoPagar, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -87,18 +117,65 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Crear Prestamo" class="btn btn-success" />
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-4">
+                <div class="btn-group" role="group" aria-label="...">
+                    <input type="button" value="Crear Prestamo" id="enviar" class="btn btn-success" />
+                    <input type="button" value="Generar Cuota" onclick="GenerarCuota();" class="btn btn-info" />
+                </div>
+
             </div>
         </div>
     </div>
 }
+<!-- Modal -->
+<div id="modalCuotas" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Cuotas</h4>
+            </div>
+            <div class="modal-body">
+                <form id='form-cuotas'>
+
+                    <table id="tablaCuotas" class="table table-striped">
+
+                        <thead>
+                            <tr>
+                                <th>N° de Cuota</th>
+                                <th>Fecha Pago</th>
+                                <th>Interes</th>
+                                <th>Capital</th>
+                                <th>Restante</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 <div>
     @Html.ActionLink("Ir al listado", "Index")
 </div>
 
+  </div>
+</div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/prestamos")
+
 }
