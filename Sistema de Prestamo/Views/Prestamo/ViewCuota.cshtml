@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Sistema_de_Prestamo.Models.Cuotas>
+
+@{
+    ViewBag.Title = "Ver Cuota";
+}
+
+<h2>Ver Cuotas</h2>
+<div class="form-group">
+    @Html.LabelFor(model => model.First().Prestamo_Id, "Prestamo", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownList("PrestamoId", null, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.First().Prestamo_Id, "", new { @class = "text-danger" })
+    </div>
+    <a class="btn btn-info" onclick="window.location='/Prestamo/ViewCuota/'+$('#PrestamoId').val()">Buscar Cuotas</a>
+</div>
+<hr />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Prestamo.FormaPago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.noCuota)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_pago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.interes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.capital)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.restante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pagado)
+        </th>
+        <th>Monto a Pagar</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (item.noCuota == 0)
+    {
+        continue;
+    }
+    decimal cuota_pagar = item.interes + item.capital;
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prestamo.FormaPago)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.noCuota)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_pago)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.interes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.capital)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.restante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pagado)
+        </td>
+        <td>
+            @cuota_pagar
+             
+        </td>
+        <td>
+            @{
+                if (!item.pagado)
+                {
+
+                    <a onclick="Pagar(@item.Id);" class="btn btn-info">Pagar</a>
+                }
+                else
+                {
+                    <a class="btn btn-success">Pagado</a>
+
+                }
+            }
+        </td>
+    </tr>
+                }
+
+</table>
+<script>
+    function Pagar(idCuota) {
+        if (confirm("¿Estas seguro que desea pagar esta cuota?")) {
+            window.location = "/Prestamo/Pagar/"+idCuota;
+        }
+    }
+</script>

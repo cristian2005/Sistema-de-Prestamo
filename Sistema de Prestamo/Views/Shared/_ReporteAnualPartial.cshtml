@@ -1,0 +1,81 @@
+﻿<div class="form-group row no-print">
+    <div class="col-md-5">
+        <label>Seleccione el Año</label>
+        @{
+            var meses = new List<SelectListItem>()
+            {
+                new SelectListItem()
+            {
+              Text=  "Todos los años",
+              Selected=true,
+              Value="0"
+
+            },
+            new SelectListItem()
+
+            {
+            Text="2022",
+            }, new SelectListItem()
+            {
+              Text=  "2021",
+            },
+            new SelectListItem()
+            {
+              Text=  "2020",
+            },
+            new SelectListItem()
+            {
+              Text=  "2019",
+            },
+            new SelectListItem()
+            {
+              Text=  "2018",
+            }
+            ,
+            new SelectListItem()
+            {
+              Text=  "2017",
+            }
+            ,
+            new SelectListItem()
+            {
+              Text=  "2016",
+            }
+            ,
+            new SelectListItem()
+            {
+              Text=  "2015",
+            }
+            ,
+            new SelectListItem()
+            {
+              Text=  "2014",
+            }
+            ,
+            new SelectListItem()
+            {
+              Text=  "2013",
+            }
+            ,
+            new SelectListItem()
+            {
+              Text=  "2012",
+            }
+            ,
+            new SelectListItem()
+            {
+              Text=  "2011",
+            }
+        };
+        }
+        @Html.DropDownList("Anual", meses, htmlAttributes: new { @class = "form-control" })
+    </div>
+    <div class="col-md-5 no-print">
+        <label>Seleccione un Cliente</label>
+        @Html.DropDownList("Cliente_Id", null, htmlAttributes: new { @class = "form-control" })
+    </div>
+    <div class="col-md-2 no-print" ">
+        <label>Filtrar</label>
+        <a class="btn btn-info" onclick="window.location = '/Reportes/PrestamoAnual/' + $('#Cliente_Id').val() + '?year=' + $('#Anual').val();">Buscar Prestamo</a>
+    </div>
+</div>

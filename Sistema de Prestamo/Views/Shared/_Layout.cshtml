@@ -30,6 +30,18 @@
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Crear", "Create", "Prestamo")</li>
                             <li>@Html.ActionLink("Cuotas", "Cuotas", "Prestamo")</li>
+                            <li>@Html.ActionLink("Ganancias", "Ganancias", "Prestamo")</li>
+
+                        </ul>
+                    </li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            Reportes <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Prestamo Mensual", "Mensual", "Reportes")</li>
+                            <li>@Html.ActionLink("Prestamo Anual", "Anual", "Reportes")</li>
+                            <li>@Html.ActionLink("Cuota de pago Cliente", "ClienteCuota", "Reportes")</li>
 
                         </ul>
                     </li>

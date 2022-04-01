@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Sistema_de_Prestamo.Models.Cuotas>
+
+@{
+    ViewBag.Title = "Cuotas de Pago Por Cliente";
+}
+<style>
+    @@media print
+{
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
+</style>
+<h2>Cuotas de Pago Por Cliente</h2>
+<button onclick="window.print();" class="btn btn-info pull-right no-print">Imprimir</button>
+<br />
+<br />
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            No. Prestamo
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prestamo.FormaPago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.noCuota)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_pago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.interes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.capital)
+        </th>
+        <th>
+            Balance
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pagado)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        if (item.noCuota == 0)
+        {
+            continue;
+        }
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prestamo.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prestamo.FormaPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.noCuota)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_pago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.interes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.capital)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.restante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pagado)
+            </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                </td>*@
+        </tr>
+    }
+    <tr>
+        <th>
+            Totales
+        </th>
+        <th>
+        </th>
+        <th>
+        </th>
+        <th>
+        </th>
+        <th>
+            @Model.Sum(x => x.interes)
+        </th>
+        <th>
+            @Model.Sum(x => x.capital)
+        </th>
+        <th>
+            @Model.Sum(x => x.restante)
+        </th>
+        <th>
+        </th>
+    </tr>
+
+</table>

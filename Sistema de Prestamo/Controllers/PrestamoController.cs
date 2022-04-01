@@ -22,7 +22,36 @@ namespace Sistema_de_Prestamo.Controllers
             var prestamo = db.Prestamo.Include(p => p.Cliente).Include(p => p.Prestadore);
             return View(prestamo.ToList());
         }
+        public ActionResult Ganancias()
+        {
+            var cuotas = db.Cuotas.ToList();
+            return View(cuotas);
+        }
+        public ActionResult Cuotas()
+        {
+            ViewBag.PrestamoId = new SelectList(db.Prestamo, "Id", "Id");
 
+            var prestamo = db.Prestamo.First();
+            return View(prestamo);
+        }
+        public ActionResult Pagar(int id)
+        {
+            var cuota = db.Cuotas.Find(id);
+            cuota.pagado = true;
+            db.Cuotas.Add(cuota);
+            db.Entry(cuota).State = EntityState.Modified;
+             db.SaveChanges();
+            ViewBag.PrestamoId = new SelectList(db.Prestamo, "Id", "Id");
+
+            return RedirectToAction("ViewCuota", new { id=cuota.Prestamo_Id });
+        }
+        public ActionResult ViewCuota(int? id)
+        {
+            ViewBag.PrestamoId = new SelectList(db.Prestamo, "Id", "Id");
+
+            var cuotas = db.Cuotas.Where(x => x.Prestamo_Id == id).ToList();
+            return View(cuotas);
+        }
         // GET: Prestamo/Details/5
         public ActionResult Details(int? id)
         {
@@ -55,9 +84,20 @@ namespace Sistema_de_Prestamo.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Prestamo.Add(prestamo);
-                var result= db.SaveChanges();
-                return Json(new {State=result });
+                int result;
+                var cliente = db.Clientes.Find(prestamo.Cliente_Id);
+                var monto_cuota_puede_pagar = cliente.Salario * 0.30m;
+                if (monto_cuota_puede_pagar<prestamo.MontoCuota)
+                {
+                     result = -2;
+                }
+                else
+                {
+                    db.Prestamo.Add(prestamo);
+                    result = db.SaveChanges();
+                }
+            
+                return Json(new {Code=result});
             }
 
             ViewBag.Cliente_Id = new SelectList(db.Clientes, "Id", "Nombre", prestamo.Cliente_Id);

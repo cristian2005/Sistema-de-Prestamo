@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Sistema_de_Prestamo.Models.Cuotas>
+
+@{
+    ViewBag.Title = "Ganancias";
+}
+
+<h2>Ganancias</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            No. Prestamos
+        </th>
+        <th>
+            No. Cuota
+        </th>
+        <th>
+            Fecha Pago
+        </th>
+        <th>
+            Ganancia de Interes
+        </th>
+        <th>
+           Cliente
+        </th>
+
+@foreach (var item in Model) {
+    if (!item.pagado)
+    {
+        continue;
+    }
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prestamo.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.noCuota)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_pago)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.interes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prestamo.Cliente.Nombre)
+        </td>
+     
+    </tr>
+}
+<tr>
+    <th></th>
+    <th></th>
+    <th>Total Ganancias</th>
+    <th>@Model.Sum(x=>x.interes)</th>
+    <th></th>
+
+</tr>
+</table>

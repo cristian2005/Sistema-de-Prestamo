@@ -1,0 +1,93 @@
+﻿<div class="form-group row no-print">
+    <div class="col-md-5">
+        <label>Seleccione el Mes</label>
+        @{
+            var meses = new List<SelectListItem>()
+            {
+                new SelectListItem()
+            {
+              Text=  "Todos los meses",
+              Selected=true,
+              Value="0"
+
+            },
+            new SelectListItem()
+
+            {
+            Text="Enero",
+            Value="1"
+            }, new SelectListItem()
+            {
+              Text=  "Febrero",
+              Value="2"
+            },
+            new SelectListItem()
+            {
+              Text=  "Marzo",
+              Value="3"
+            },
+            new SelectListItem()
+            {
+              Text=  "Abril",
+              Value="4"
+            },
+            new SelectListItem()
+            {
+              Text=  "Mayo",
+              Value="5"
+            }
+            ,
+            new SelectListItem()
+            {
+              Text=  "Junio",
+              Value="6"
+            }
+            ,
+            new SelectListItem()
+            {
+              Text=  "Julio",
+              Value="7"
+            }
+            ,
+            new SelectListItem()
+            {
+              Text=  "Agosto",
+              Value="8"
+            }
+            ,
+            new SelectListItem()
+            {
+              Text=  "Septiembre",
+              Value="9"
+            }
+            ,
+            new SelectListItem()
+            {
+              Text=  "Octubre",
+              Value="10"
+            }
+            ,
+            new SelectListItem()
+            {
+              Text=  "Noviembre",
+              Value="11"
+            }
+            ,
+            new SelectListItem()
+            {
+              Text=  "Diciembre",
+              Value="12"
+            }
+        };
+        }
+        @Html.DropDownList("Meses", meses, htmlAttributes: new { @class = "form-control" })
+    </div>
+    <div class="col-md-5 no-print">
+        <label>Seleccione un Cliente</label>
+        @Html.DropDownList("Cliente_Id", null, htmlAttributes: new { @class = "form-control" })
+    </div>
+    <div class="col-md-2 no-print"">
+        <label>Filtrar</label>
+        <a class="btn btn-info" onclick="if ($('#Meses').val() != null) window.location = '/Reportes/PrestamoMensual/' + $('#Cliente_Id').val() + '?mes=' + $('#Meses').val(); else alert('Seleccione un mes a filtrar');">Buscar Prestamo</a>
+    </div>
+</div>

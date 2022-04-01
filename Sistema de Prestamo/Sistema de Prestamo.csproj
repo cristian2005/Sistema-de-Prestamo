@@ -297,12 +297,17 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PrestadoresController.cs" />
     <Compile Include="Controllers\PrestamoController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202203311843424_Migracion.cs" />
     <Compile Include="Migrations\202203311843424_Migracion.Designer.cs">
       <DependentUpon>202203311843424_Migracion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204011336550_AgregadoCampoPagado.cs" />
+    <Compile Include="Migrations\202204011336550_AgregadoCampoPagado.Designer.cs">
+      <DependentUpon>202204011336550_AgregadoCampoPagado.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -383,12 +388,22 @@
     <Content Include="Views\Prestadores\Details.cshtml" />
     <Content Include="Views\Prestadores\Edit.cshtml" />
     <Content Include="Views\Prestadores\Index.cshtml" />
-    <Content Include="Views\p\CrearPrestamo.cshtml" />
     <Content Include="Views\Prestamo\Create.cshtml" />
     <Content Include="Views\Prestamo\Delete.cshtml" />
     <Content Include="Views\Prestamo\Details.cshtml" />
     <Content Include="Views\Prestamo\Edit.cshtml" />
     <Content Include="Views\Prestamo\Index.cshtml" />
+    <Content Include="Views\Prestamo\Cuotas.cshtml" />
+    <Content Include="Views\Prestamo\ViewCuota.cshtml" />
+    <Content Include="Views\Reportes\CuotasPagoPorCliente.cshtml" />
+    <Content Include="Views\Reportes\ClienteCuota.cshtml" />
+    <Content Include="Views\Prestamo\Ganancias.cshtml" />
+    <Content Include="Views\Reportes\Mensual.cshtml" />
+    <Content Include="Views\Reportes\PrestamoMensual.cshtml" />
+    <Content Include="Views\Shared\_ReporteMesPartial.cshtml" />
+    <Content Include="Views\Reportes\Anual.cshtml" />
+    <Content Include="Views\Shared\_ReporteAnualPartial.cshtml" />
+    <Content Include="Views\Reportes\PrestamoAnual.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -409,6 +424,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202203311843424_Migracion.resx">
       <DependentUpon>202203311843424_Migracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204011336550_AgregadoCampoPagado.resx">
+      <DependentUpon>202204011336550_AgregadoCampoPagado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

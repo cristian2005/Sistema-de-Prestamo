@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Cuotas por Cliente";
+}
+
+<h2>Buscar Cuotas por Cliente</h2>
+
+<div class="form-group">
+    <div class="col-md-2">
+        <label>Seleccione un cliente</label>
+    </div>
+    <div class="col-md-10">
+        @Html.DropDownList("Cliente_Id", null, htmlAttributes: new { @class = "form-control" })
+    </div>
+    <a class="btn btn-info" onclick="window.location='/Reportes/CuotasPagoPorCliente/'+$('#Cliente_Id').val()">Buscar Cuotas</a>
+</div>
+

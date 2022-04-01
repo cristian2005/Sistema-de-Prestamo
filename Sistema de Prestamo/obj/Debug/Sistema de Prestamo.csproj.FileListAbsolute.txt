@@ -183,3 +183,4 @@ C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\bi
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\bin\System.Net.Http.Formatting.xml
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\bin\System.Web.Http.xml
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\bin\System.Web.Http.WebHost.xml
+C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema_de_Prestamo.Migrations.AgregadoCampoPagado.resources

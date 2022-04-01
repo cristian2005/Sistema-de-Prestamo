@@ -1,31 +1,36 @@
 ﻿
     $(document).ready(function () {
-        $("#enviar").on("click",function (e) {
-            let formCuotas = $('#form-cuotas').serializeArray();
+        $("#enviar").on("click", function (e) {
+            if (validarCuota(["Monto", "NoCuotas", "FechaInicio", "FormaPago"])) {
+                let formCuotas = $('#form-cuotas').serializeArray();
 
-            formCuotas = formatFormData(formCuotas, ["noCuota[]", "fecha_pago[]", "interes[]", "capital[]", "restante[]"]);
-            let cuotas = [];
-            formCuotas.capital.forEach(function (t, index) {
-                cuotas.push({
-                    Id: 0, fecha_pago: formCuotas.fecha_pago[index], noCuota: formCuotas.noCuota[index], interes: formCuotas.interes[index], capital: t,
-                    restante: formCuotas.restante[index], Prestamod_Id: 0
+                formCuotas = formatFormData(formCuotas, ["noCuota[]", "fecha_pago[]", "interes[]", "capital[]", "restante[]"]);
+                let cuotas = [];
+                formCuotas.capital.forEach(function (t, index) {
+                    cuotas.push({
+                        Id: 0, fecha_pago: formCuotas.fecha_pago[index], noCuota: formCuotas.noCuota[index], interes: formCuotas.interes[index], capital: t,
+                        restante: formCuotas.restante[index], Prestamod_Id: 0
+                    });
                 });
+                let prestamos = formatFormData($("#form-prestamos").serializeArray(), ["Monto", "NoCuotas", "FechaInicio", "FormaPago", "MontoCuota", "TotalIntereses", "MontoPagar", "Cliente_Id", "Prestadore_Id", "Interes"]);
+                prestamos.Cuotas = cuotas;
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Prestamo/Create",
+                    data: JSON.stringify(prestamos),
+                    headers: { "Content-Type": "application/json" },
+                    dataType: "json",
+                    success: function (resp) {
+                        console.log(resp);
+                        if (resp.Code == -2) {
+                            alert("No puedes adquirir este prestamo porque no cuenta con los suficientes fondo para pagar la cuota");
+                        }else
+                        window.location = "Index";
+                    },
+                });
+            }
             });
-            let prestamos = formatFormData($("#form-prestamos").serializeArray(), ["Monto", "NoCuotas", "FechaInicio", "FormaPago", "MontoCuota", "TotalIntereses", "MontoPagar", "Cliente_Id", "Prestadore_Id","Interes"]);
-            prestamos.Cuotas = cuotas;
-           
-            $.ajax({
-                type: "POST",
-                url: "/Prestamo/Create",
-                data: JSON.stringify(prestamos),
-                headers: { "Content-Type": "application/json" },
-                dataType: "json",
-                success: function (resp) {
-                    console.log(resp);
-                    window.location="Index";
-                },
-            })
-        });
     });
 function GenerarCuota() {
 
@@ -35,7 +40,8 @@ function GenerarCuota() {
         let numCuota = parseInt($('#NoCuotas').val());
         let fecha = $('#FechaInicio').val();
         let formaPago = $('#FormaPago').val();
-		let html = "";
+        let html = "";
+        let total_interes = 0.00;
 		var interestRate =
 			parseFloat(document.getElementById("Interes").value / 100.0);
 
@@ -46,7 +52,6 @@ function GenerarCuota() {
 			1 + monthlyRate, -numCuota)));
 
 		$('#MontoCuota').val(payment.toFixed(2));
-		$('#TotalIntereses').val((interestRate * 100).toFixed(2));
 		$('#MontoPagar').val((payment * numCuota).toFixed(2));
 
         for (var i = 0; i <= numCuota; i++) {
@@ -60,7 +65,7 @@ function GenerarCuota() {
 
 			//calc the in-loop interest amount and display
 			interest = monto * monthlyRate;
-
+            total_interes += interest;
 			//calc the in-loop monthly principal and display
 			monthlyPrincipal = payment - interest;
 			//result += "<td> $" + monthlyPrincipal.toFixed(2) + "</td>";
@@ -96,6 +101,7 @@ function GenerarCuota() {
             //update the balance for each loop iteration
 			monto = monto - monthlyPrincipal;
         }
+        $('#TotalIntereses').val(total_interes.toFixed(2));
         $('#tablaCuotas tbody').html(html);
         $('#modalCuotas').modal("show");
     }
