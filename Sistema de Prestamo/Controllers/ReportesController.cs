@@ -1,6 +1,8 @@
-﻿using Sistema_de_Prestamo.Models;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using Sistema_de_Prestamo.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -126,6 +128,43 @@ namespace Sistema_de_Prestamo.Controllers
             catch
             {
                 return View();
+            }
+        }
+        public ActionResult ExportReport(string id)
+        {
+            ReportDocument rd = new ReportDocument();
+            string name_report = "";
+            object obj=null;
+
+            switch (id)
+            {
+                case "Prestamo Mensual":
+                    name_report = "ReporteMensual";
+                    obj = db.Prestamo.Select(x=> new { Nombre=x.Cliente.Nombre,x.Cuotas,x.FechaInicio,x.FormaPago,x.Interes,x.Monto,x.MontoCuota,x.MontoPagar,x.NoCuotas,x.TotalIntereses}).ToList();
+                    break;
+                case "Prestamo Anual":
+                    name_report = "ReporteAnual";
+                    break;
+                case "Cuotas de Pagos":
+                    name_report = "CuotasPagosPorCliente";
+                    break;
+                default:
+                    break;
+            }
+            rd.Load(Path.Combine(Server.MapPath("~/Report"), name_report + ".rpt"));
+            rd.SetDataSource(obj);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/pdf", id+".pdf");
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
     }
