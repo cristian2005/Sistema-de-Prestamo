@@ -27,6 +27,22 @@ namespace Sistema_de_Prestamo.Controllers
             var cuotas = db.Cuotas.ToList();
             return View(cuotas);
         }
+        public ActionResult Moras()
+        {
+            var today = DateTime.Now.Date;
+            var cuotas = db.Cuotas.Where(x=>x.noCuota>0 && x.pagado==false && x.Moras.Where(m=>m.IdCuota==x.Id).Count()==0);
+            List<Cuotas> cuotas1 = new List<Cuotas>();
+            foreach (var item in cuotas)
+            {
+                if (today>Convert.ToDateTime(item.fecha_pago))
+                {
+                    //Almaceno en esta variable los dias atrasados solo es temporalmente
+                    item.Prestamo_Id = int.Parse((today-Convert.ToDateTime(item.fecha_pago) ).TotalDays.ToString());
+                    cuotas1.Add(item);
+                }
+            }
+            return View(cuotas1);
+        }
         public ActionResult Cuotas()
         {
             ViewBag.PrestamoId = new SelectList(db.Prestamo, "Id", "Id");
@@ -34,6 +50,13 @@ namespace Sistema_de_Prestamo.Controllers
             var prestamo = db.Prestamo.First();
             return View(prestamo);
         }
+        public ActionResult PagarMora(int id, decimal montoMora)
+        {
+            db.Moras.Add(new Models.Moras { FechaPago = DateTime.Now, MontoPagado = montoMora, IdCuota = id, Pagado = true });
+            db.SaveChanges();
+            return RedirectToAction("Moras");
+        }
+        
         public ActionResult Pagar(int id)
         {
             var cuota = db.Cuotas.Find(id);

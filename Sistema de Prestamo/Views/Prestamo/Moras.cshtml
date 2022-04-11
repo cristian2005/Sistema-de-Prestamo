@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Sistema_de_Prestamo.Models.Cuotas>
+
+@{
+    ViewBag.Title = "Moras";
+}
+
+<h2>Cuotas Atrasadas</h2>
+
+<div class="alert alert-info">
+    <b>Alerta!</b> El monto de la mora es un 3% del total de la cuota
+</div>
+<table class="table tabla">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.noCuota)
+            </th>
+            <th>
+                Fecha Pago
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.interes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.capital)
+            </th>
+            <th>
+                Monto Cuota
+            </th>
+            <th>
+                Dias atrasados
+            </th>
+            <th>Monto a Pagar</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var monto_pagar = (0.03m * item.restante) * item.Prestamo_Id;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.noCuota)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha_pago)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.interes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.capital)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.restante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prestamo_Id)
+                </td>
+                <td>
+                    @monto_pagar
+                </td>
+                <td>
+                    <a onclick="PagarMora(@item.Id,@monto_pagar)" class="btn btn-info">Pagar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<script>
+    function PagarMora(idCuota,MontoMora) {
+        if (confirm("¿Está seguro que desea pagar la mora?")) {
+            window.location = "/Prestamo/PagarMora/" + idCuota + "?montoMora=" + MontoMora;
+        }
+    }
+</script>

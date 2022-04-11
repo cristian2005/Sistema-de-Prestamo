@@ -19,7 +19,10 @@ namespace Sistema_de_Prestamo.Controllers
 
             return View();
         }
-
+        public ActionResult Moras()
+        {
+            return View(db.Moras.ToList());
+        }
         public ActionResult CuotasPagoPorCliente(int? id)
         {
             var cuotas = db.Cuotas.Where(x => x.Prestamo.Cliente_Id == id).ToList();

@@ -21,5 +21,7 @@ namespace Sistema_de_Prestamo.Models
         [ForeignKey("Prestamo")]
         public int Prestamo_Id { get; set; }
         public virtual Prestamo Prestamo { get; set; }
+        public List<Moras> Moras { get; set; }
+
     }
 }

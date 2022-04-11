@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Sistema_de_Prestamo.Models.Moras>
+<style>
+    @@media print {
+        .no-print, .no-print * {
+            display: none !important;
+        }
+    }
+</style>
+@{
+    ViewBag.Title = "Listado de Moras";
+}
+
+<h2>Listado de Moras</h2>
+<button onclick="window.print();" class="btn btn-info pull-right no-print">Imprimir</button>
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th>
+            No Cuota
+        </th>
+        <th>
+            Mora
+        </th>
+        <th>
+           Fecha de Pago
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cuotas.noCuota)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MontoPagado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaPago)
+        </td>
+    </tr>
+}
+
+</table>

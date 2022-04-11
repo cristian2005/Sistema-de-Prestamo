@@ -34,6 +34,8 @@ namespace Sistema_de_Prestamo.Models
         public System.Data.Entity.DbSet<Sistema_de_Prestamo.Models.Cuotas> Cuotas { get; set; }
         public System.Data.Entity.DbSet<Sistema_de_Prestamo.Models.Prestadore> Prestadores { get; set; }
         public System.Data.Entity.DbSet<Sistema_de_Prestamo.Models.Prestamo> Prestamo { get; set; }
+        public System.Data.Entity.DbSet<Sistema_de_Prestamo.Models.Moras> Moras { get; set; }
+
 
     }
 }

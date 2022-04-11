@@ -105,7 +105,6 @@ C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\ob
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema de Prestamo.csproj.CopyComplete
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema de Prestamo.dll
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema de Prestamo.pdb
-C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema de Prestamo.csprojAssemblyReference.cache
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema_de_Prestamo.Migrations.Migracion.resources
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema de Prestamo.csproj.GenerateResource.cache
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\bin\Microsoft.AspNetCore.Authentication.Abstractions.dll
@@ -200,3 +199,6 @@ C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\bi
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\bin\stdole.dll
+C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema de Prestamo.csprojAssemblyReference.cache
+C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema_de_Prestamo.Migrations.add_mora.resources
+C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema_de_Prestamo.Migrations.mora_type_Data.resources
