@@ -2,22 +2,26 @@
 
 @{
     ViewBag.Title = "Ver Cuota";
+    var boton_pagado = true;
 }
 
 <h2>Ver Cuotas</h2>
 <div class="form-group">
-    @Html.LabelFor(model => model.First().Prestamo_Id, "Prestamo", htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.LabelFor(model => model.First().Prestamo_Id, "Cliente", htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        @Html.DropDownList("PrestamoId", null, htmlAttributes: new { @class = "form-control" })
+        @Html.DropDownList("ClientesId", null, htmlAttributes: new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.First().Prestamo_Id, "", new { @class = "text-danger" })
     </div>
-    <a class="btn btn-info" onclick="window.location='/Prestamo/ViewCuota/'+$('#PrestamoId').val()">Buscar Cuotas</a>
+    <a class="btn btn-info" onclick="window.location='/Prestamo/ViewCuota/'+$('#ClientesId').val()">Buscar Cuotas</a>
 </div>
 <hr />
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Prestamo.FormaPago)
+        </th>
+        <th>
+            No. Prestamo
         </th>
         <th>
             @Html.DisplayNameFor(model => model.noCuota)
@@ -48,54 +52,83 @@
         continue;
     }
     decimal cuota_pagar = item.interes + item.capital;
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Prestamo.FormaPago)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.noCuota)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha_pago)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.interes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.capital)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.restante)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pagado)
-        </td>
-        <td>
-            @cuota_pagar
-             
-        </td>
-        <td>
-            @{
-                if (!item.pagado)
-                {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Prestamo.FormaPago)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Prestamo_Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.noCuota)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fecha_pago)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.interes)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.capital)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.restante)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.pagado)
+    </td>
+    <td>
+        @cuota_pagar
 
-                    <a onclick="Pagar(@item.Id);" class="btn btn-info">Pagar</a>
+    </td>
+    <td>
+        @{
+            if (!item.pagado)
+            {
+                var is_admin = User.IsInRole("Administrador") ? 1 : 0;
+
+                if (boton_pagado)
+                {
+                    boton_pagado = false;
+                    if (!item.autorizado)
+                    {
+                        <a onclick="Pagar(@item.Id,@is_admin);" class="btn btn-info">Pagar</a>
+                    }
+                    else
+                    {
+                        <a  class="btn btn-info">Pago en autorizacion</a>
+                    }
+
                 }
-                else
-                {
-                    <a class="btn btn-success">Pagado</a>
 
+                if (item.autorizado && User.IsInRole("Administrador"))
+                {
+                    <a onclick="Pagar(@item.Id,1);" class="btn btn-primary">Autorizar</a>
                 }
             }
-        </td>
-    </tr>
+            else
+            {
+                <a class="btn btn-success">Pagado</a>
+                boton_pagado = true;
+
+            }
+        }
+    </td>
+</tr>
                 }
 
 </table>
 <script>
-    function Pagar(idCuota) {
-        if (confirm("¿Estas seguro que desea pagar esta cuota?")) {
-            window.location = "/Prestamo/Pagar/"+idCuota;
+    function Pagar(idCuota, admin) {
+        if (admin == 1) {
+            if (confirm("¿Estas seguro que desea pagar esta cuota?")) {
+                window.location = "/Prestamo/Pagar/" + idCuota+"?admin="+admin;
+            }
         }
+        else {
+            if (confirm("¿Estas seguro que desea pagar esta cuota, debes esperar que un administrador la autorice para que sea procesada?")) {
+                window.location = "/Prestamo/Pagar/" + idCuota+"?admin="+admin;
+            }
+            }
     }
 </script>

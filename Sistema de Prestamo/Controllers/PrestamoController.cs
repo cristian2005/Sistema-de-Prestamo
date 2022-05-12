@@ -45,10 +45,10 @@ namespace Sistema_de_Prestamo.Controllers
         }
         public ActionResult Cuotas()
         {
-            ViewBag.PrestamoId = new SelectList(db.Prestamo, "Id", "Id");
+            ViewBag.ClientesId = new SelectList(db.Clientes, "Id", "Nombre");
 
-            var prestamo = db.Prestamo.First();
-            return View(prestamo);
+            var cliente = db.Clientes.First();
+            return View(cliente);
         }
         public ActionResult PagarMora(int id, decimal montoMora)
         {
@@ -57,22 +57,25 @@ namespace Sistema_de_Prestamo.Controllers
             return RedirectToAction("Moras");
         }
         
-        public ActionResult Pagar(int id)
+        public ActionResult Pagar(int id, int admin)
         {
             var cuota = db.Cuotas.Find(id);
-            cuota.pagado = true;
+            if (admin == 0)
+                cuota.autorizado = true;
+            else
+                cuota.pagado = true;
             db.Cuotas.Add(cuota);
             db.Entry(cuota).State = EntityState.Modified;
              db.SaveChanges();
-            ViewBag.PrestamoId = new SelectList(db.Prestamo, "Id", "Id");
+            ViewBag.ClientesId = new SelectList(db.Clientes, "Id", "Nombre");
 
-            return RedirectToAction("ViewCuota", new { id=cuota.Prestamo_Id });
+            return RedirectToAction("ViewCuota", new { id=cuota.Prestamo.Cliente_Id });
         }
         public ActionResult ViewCuota(int? id)
         {
-            ViewBag.PrestamoId = new SelectList(db.Prestamo, "Id", "Id");
+            ViewBag.ClientesId = new SelectList(db.Clientes, "Id", "Nombre");
 
-            var cuotas = db.Cuotas.Where(x => x.Prestamo_Id == id).ToList();
+            var cuotas = db.Cuotas.Where(x => x.Prestamo.Cliente_Id == id).ToList();
             return View(cuotas);
         }
         // GET: Prestamo/Details/5

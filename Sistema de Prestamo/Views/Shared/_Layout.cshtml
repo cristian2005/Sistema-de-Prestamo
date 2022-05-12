@@ -20,9 +20,24 @@
                 @Html.ActionLink("Sistema de prestamos", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    string action_cliente = "";
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
-                    <li>@Html.ActionLink("Prestadores", "Index", "Prestadores")</li>
+                    @if (User.IsInRole("Administrador"))
+                    {
+                         action_cliente = "Index";
+                    }
+                    else
+                    {
+                         action_cliente = "Create";
+                    }
+
+                    <li>@Html.ActionLink("Clientes", @action_cliente, "Clientes")</li>
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <li>@Html.ActionLink("Prestadores", "Index", "Prestadores")</li>
+                    }
                     <li role="presentation" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             Prestamos <span class="caret"></span>
@@ -30,25 +45,33 @@
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Crear", "Create", "Prestamo")</li>
                             <li>@Html.ActionLink("Cuotas", "Cuotas", "Prestamo")</li>
-                            <li>@Html.ActionLink("Ganancias", "Ganancias", "Prestamo")</li>
-                            <li>@Html.ActionLink("Moras", "Moras", "Prestamo")</li>
+
+                            @if (User.IsInRole("Administrador"))
+                            {
+                                <li>@Html.ActionLink("Ganancias", "Ganancias", "Prestamo")</li>
+                                <li>@Html.ActionLink("Moras", "Moras", "Prestamo")</li>
+                            }
                         </ul>
                     </li>
-                    <li role="presentation" class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            Reportes <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Prestamo Mensual", "Mensual", "Reportes")</li>
-                            <li>@Html.ActionLink("Prestamo Anual", "Anual", "Reportes")</li>
-                            <li>@Html.ActionLink("Cuota de pago Cliente", "ClienteCuota", "Reportes")</li>
-                            <li>@Html.ActionLink("Moras", "Moras", "Reportes")</li>
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                Reportes <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Prestamo Mensual", "Mensual", "Reportes")</li>
+                                <li>@Html.ActionLink("Prestamo Anual", "Anual", "Reportes")</li>
+                                <li>@Html.ActionLink("Cuota de pago Cliente", "ClienteCuota", "Reportes")</li>
+                                <li>@Html.ActionLink("Moras", "Moras", "Reportes")</li>
 
 
-                        </ul>
-                    </li>
+                            </ul>
+                        </li>
+                    }
                     @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                 </ul>
+                }
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

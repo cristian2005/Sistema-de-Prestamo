@@ -1,4 +1,4 @@
-﻿@model Sistema_de_Prestamo.Models.Prestamo
+﻿@model Sistema_de_Prestamo.Models.Cliente
 @{
     ViewBag.Title = "Cuotas";
 }
@@ -6,9 +6,9 @@
 <h2>Buscar Cuotas</h2>
 
 <div class="form-group">
-    @Html.LabelFor(model => model.Id, "Prestamo", htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.LabelFor(model => model.Id, "Cliente", htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        @Html.DropDownList("PrestamoId", null, htmlAttributes: new { @class = "form-control", @id="selectPrestamoId" })
+        @Html.DropDownList("ClientesId", null, htmlAttributes: new { @class = "form-control", @id="selectPrestamoId" })
         @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
     </div>
     <a class="btn btn-info" onclick="window.location='/Prestamo/ViewCuota/'+$('#selectPrestamoId').val()">Buscar Cuotas</a>

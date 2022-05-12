@@ -320,6 +320,10 @@
     <Compile Include="Migrations\202204111511231_mora_type_Data.Designer.cs">
       <DependentUpon>202204111511231_mora_type_Data.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205120148249_add_campo_autizado.cs" />
+    <Compile Include="Migrations\202205120148249_add_campo_autizado.Designer.cs">
+      <DependentUpon>202205120148249_add_campo_autizado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cliente.cs" />
@@ -465,6 +469,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204111511231_mora_type_Data.resx">
       <DependentUpon>202204111511231_mora_type_Data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205120148249_add_campo_autizado.resx">
+      <DependentUpon>202205120148249_add_campo_autizado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\CuotasPagoPorCliente.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

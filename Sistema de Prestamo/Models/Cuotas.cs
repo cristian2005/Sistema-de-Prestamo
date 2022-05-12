@@ -17,6 +17,7 @@ namespace Sistema_de_Prestamo.Models
         public decimal restante { get; set; }
         [DefaultValue(false)]
         public bool pagado { get; set; }
+        public bool autorizado { get; set; }
 
         [ForeignKey("Prestamo")]
         public int Prestamo_Id { get; set; }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Sistema_de_Prestamo.Models;
@@ -17,6 +18,7 @@ namespace Sistema_de_Prestamo.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -155,6 +157,12 @@ namespace Sistema_de_Prestamo.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+                    var resultado = roleManager.Create(new IdentityRole(model.Role));
+                    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+
+                    result = userManager.AddToRole(user.Id, model.Role);
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

@@ -202,3 +202,4 @@ C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\bi
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema de Prestamo.csprojAssemblyReference.cache
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema_de_Prestamo.Migrations.add_mora.resources
 C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema_de_Prestamo.Migrations.mora_type_Data.resources
+C:\Users\Critian Herrera\source\repos\Sistema de Prestamo\Sistema de Prestamo\obj\Debug\Sistema_de_Prestamo.Migrations.add_campo_autizado.resources
